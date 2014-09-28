@@ -1,4 +1,4 @@
-(
+
 SynthDef.new(\blip,
 	{
 	arg out, fund=300, decay=0.2, dens = 20;
@@ -22,7 +22,7 @@ SynthDef.new(\reverb,
 	Out.ar(out, sig);
 	}
 ).add;
-)
+
 
 ~reverbBus  = Bus.audio(s, 1);
 ~reverbBus2 = Bus.audio(s, 2);
