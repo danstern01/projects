@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<title>Sine Wave Demo</title>		
+	</head>
+	<body>
+		<script type="text/javascript">
+			var context = new webkitAudioContext(); // Create audio container
+			oscillator = context.createOscillator(); // Create sound source
+			//
+			// Sine wave is type = 0
+			// Square wave is type = 1
+			// Sawtooth wave is type = 2
+			// Triangle wave is type = 3
+			//
+			oscillator.type = 3;
+
+			oscillator.frequency.value = 100;
+			
+			oscillator.connect(context.destination); // Connect sound to output
+			oscillator.noteOn(0); // Play instantly
+		</script>
+	</body>
+</html>
+

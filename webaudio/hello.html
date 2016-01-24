@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Title </title>
+
+<script type="JavaScript">
+
+var context = new AudioContext();
+
+oscillator = context.createOscillator();
+oscillator.connect(context.destination);
+oscillator.noteOn(0);
+
+function playSound(buffer) {
+  var source = context.createBufferSource();
+  source.buffer = buffer;
+ 
+  var gainNode = context.createGainNode();
+  gainNode.gain = 0.5;
+
+  source.connect(gainNode);
+  gainNode.connect(context.destination);
+  
+  source.noteOn(0);
+}
+
+</script>
+
+</head>
+<body>
+
+
+<input type="button" onclick="playSound.play();" value="Play"/>
+
+</body>
+</html>
+
+
+</body>
+</html>
