@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+  <title> Gibber Example </title>
+  <script src='build/gibber.lib.js'></script>
+</head>
+<html>
+<body>
+<button id="onoff" onclick="playToggle()" >Start</button>
+<script>
+Gibber.init() // REQUIRED!
+
+function playToggle() {
+    var el = document.getElementById("onoff").firstChild;
+    if(el.data == "Start") {
+      el.data = "Stop";
+      play();
+    } else {
+      el.data = "Start";
+      stopPlay();
+    }
+}
+function play() {
+
+  Gibber.scale.root.seq( ['c4','eb4'], 2)
+
+  a = Mono('bass').note.seq( [0,7], 1/8 )
+
+  b = EDrums('xoxo')
+  b.snare.snappy = 1
+
+  c = Mono('easyfx')
+  .note.seq( Rndi(0,12), [1/4,1/8,1/2,1,2].rnd( 1/8,4 ) )
+}
+
+function stopPlay() {
+  Gibber.clear();
+}
+
+</script>
+</body>
+</html>
