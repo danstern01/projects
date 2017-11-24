@@ -2,38 +2,38 @@
 <html>
 <head>
 <title> Title </title>
-
-<script type="JavaScript">
-
-var context = new AudioContext();
-
-oscillator = context.createOscillator();
-oscillator.connect(context.destination);
-oscillator.noteOn(0);
-
-function playSound(buffer) {
-  var source = context.createBufferSource();
-  source.buffer = buffer;
- 
-  var gainNode = context.createGainNode();
-  gainNode.gain = 0.5;
-
-  source.connect(gainNode);
-  gainNode.connect(context.destination);
-  
-  source.noteOn(0);
-}
-
-</script>
-
 </head>
 <body>
 
+<input id="b1" type="button" onclick="playSound();" value="Play"/>
 
-<input type="button" onclick="playSound.play();" value="Play"/>
+<script type="text/javascript">
 
-</body>
-</html>
+  var playing = false;
+  var c = new (window.AudioContext || window.webkitAudioContext)();
+
+  // Oscillator variable, create outside of playSound function.
+  // Note, you cannot call oscillator.start() more than once.
+  // Instead you create new oscillator each time.
+  var o;
+
+function playSound() {
+  if( playing == true) {
+    o.stop();
+    playing = false;
+    document.getElementById("b1").value = "Play";
+  }
+  else {
+    playing = true;
+    document.getElementById("b1").value = "Stop Playing";
+    o = c.createOscillator();
+    o.type = 'sine';
+    o.frequency.value = 2500;
+    o.connect(c.destination);
+    o.start();
+  }
+}
+</script>
 
 
 </body>
